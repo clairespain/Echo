@@ -25,22 +25,37 @@ class Particle {
     location.add(velocity);
     velocity.limit(velocityLimit);
   }
-  
-  void velocity(){
+
+  void velocity() {
     mouseDistance = dist(mouseX, mouseY, location.x, location.y);
-    if(mouseDistance < 100){
+    if (mouseDistance < 100) {
       velocityLimit = 5;
-    }else if(mouseDistance < 300){
-      velocityLimit = 2.5;
-    }else if (mouseDistance < 500) {
+    } else if (mouseDistance < 150) {
+      velocityLimit = 4;
+    } else if (mouseDistance < 200) {
+      velocityLimit = 3;
+    } else if (mouseDistance < 250) {
+      velocityLimit = 2;
+    } else if (mouseDistance < 300) {
+      velocityLimit = 1.5;
+    } else if (mouseDistance < 350) {
+      velocityLimit = 1;
+    } else if (mouseDistance < 400) {
       velocityLimit = .5;
-    }else{
+    } else if (mouseDistance < 450) {
+      velocityLimit =.25;
+    } else {
       velocityLimit = 0;
     }
   }
 
+  void scatter() {
+    location.x += (int)random(-20, 20);
+    location.y += (int)random(-20, 20);
+  }
+
   void display() {
-    stroke(255);
-    circle(location.x, location.y, 3);
+    fill(255);
+    circle(location.x, location.y, 5);
   }
 }
