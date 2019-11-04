@@ -28,46 +28,50 @@ class Particle {
     PVector mouse = new PVector(mouseX, mouseY);
     PVector stop = new PVector(0, 0);
     mouse.sub(location);
-    mouse.setMag(0.1);
+    mouse.setMag(0.25);
     
     mouseDistance = dist(mouseX, mouseY, location.x, location.y);
-    if (mouseDistance < 100) {
+    if (mouseDistance < 150) {
       acceleration = mouse;
-      velocityLimit = 6;
-    } else if (mouseDistance < 150) {
-      acceleration = mouse;
-      velocityLimit = 4;
+      velocityLimit = 8;
     } else if (mouseDistance < 200) {
       acceleration = mouse;
-      velocityLimit = 3;
+      velocityLimit = 6;
     } else if (mouseDistance < 250) {
       acceleration = mouse;
-      velocityLimit = 2;
+      velocityLimit = 4;
     } else if (mouseDistance < 300) {
       acceleration = mouse;
-      velocityLimit = 1.5;
+      velocityLimit = 2;
     } else if (mouseDistance < 350) {
       acceleration = mouse;
-      velocityLimit = 1;
+      velocityLimit = 1.5;
     } else if (mouseDistance < 400) {
       acceleration = mouse;
-      velocityLimit = .5;
+      velocityLimit = 1;
     } else if (mouseDistance < 450) {
+      acceleration = mouse;
+      velocityLimit = .5;
+    } else if (mouseDistance < 500) {
       acceleration = mouse;
       velocityLimit =.25;
     } else {
       acceleration = stop;
-      velocityLimit = 0;
+      velocityLimit = 0.0;
     }
   }
 
   void scatter() {
-    location.x += (int)random(-50, 50);
-    location.y += (int)random(-50, 50);
+    //location.x += (int)random(-50, 50);
+    //location.y += (int)random(-50, 50);
+    acceleration = PVector.random2D();
+    velocityLimit = 10;
   }
 
   void display() {
     fill(255);
+    //locX = constrain(location.x, 0, width);
+    //locY = constrain(location.y, 0, height);
     circle(location.x, location.y, 5);
   }
 }
