@@ -29,7 +29,7 @@ class Particle {
     PVector stop = new PVector(0, 0);
     mouse.sub(location);
     mouse.setMag(0.25);
-    
+    acceleration = mouse;
     mouseDistance = dist(mouseX, mouseY, location.x, location.y);
     if (mouseDistance < 150) {
       acceleration = mouse;
@@ -56,7 +56,7 @@ class Particle {
       acceleration = mouse;
       velocityLimit =.25;
     } else {
-      acceleration = stop;
+      //acceleration = stop;
       velocityLimit = 0.0;
     }
   }
@@ -64,14 +64,15 @@ class Particle {
   void scatter() {
     //location.x += (int)random(-50, 50);
     //location.y += (int)random(-50, 50);
-    acceleration = PVector.random2D();
+    //acceleration = PVector.random2D();
+    //acceleration = mouse;
     velocityLimit = 10;
-    if(location.x <= -10 || location.x >= width + 10){
+    /*if(location.x <= -10 || location.x >= width + 10){
       location.x = random(0, width);
     }
     if(location.y <= -10 || location.y >= height + 10){
       location.y = random(0, height);
-    }
+    }*/
   }
 
   void display() {
