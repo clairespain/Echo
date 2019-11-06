@@ -9,7 +9,6 @@ class Particle {
   int red = (int)random(200, 255);
   int green = (int)random(200, 255);
   int blue = (int)random(200, 255);
-  float size = (float)random(4, 6);
 
   Particle( float locX, float locY) {
     this.locX = locX;
@@ -30,9 +29,12 @@ class Particle {
     PVector stop = new PVector(0, 0);
     mouse.sub(location);
     mouse.setMag(0.25);
-    
+    acceleration = mouse;
     mouseDistance = dist(mouseX, mouseY, location.x, location.y);
-    if (mouseDistance < 150) {
+    if (blackHole) {
+      acceleration = mouse;
+      velocityLimit = 30;
+    } else if (mouseDistance < 150) {
       acceleration = mouse;
       velocityLimit = 8;
     } else if (mouseDistance < 200) {
@@ -63,23 +65,24 @@ class Particle {
   }
 
   void scatter() {
-    //location.x += (int)random(-50, 50);
-    //location.y += (int)random(-50, 50);
     acceleration = PVector.random2D();
     velocityLimit = 10;
-    if(location.x <= -10 || location.x >= width + 10){
-      location.x = random(0, width);
-    }
-    if(location.y <= -10 || location.y >= height + 10){
-      location.y = random(0, height);
-    }
+  }
+
+  void shake() {
+    location.x += (int)random(-50, 50);
+    location.y += (int)random(-50, 50);
   }
 
   void display() {
+    if (location.x <= -10 || location.x >= width + 10) {
+      location.x = random(0, width);
+    }
+    if (location.y <= -10 || location.y >= height + 10) {
+      location.y = random(0, height);
+    }
+
     fill(255);
-    noStroke();
-    //locX = constrain(location.x, 0, width);
-    //locY = constrain(location.y, 0, height);
-    circle(location.x, location.y, size);//(int)random(3, 10));
+    circle(location.x, location.y, 5);
   }
 }
