@@ -1,33 +1,41 @@
+//Bring in all our special settings
 import processing.sound.*;
+Sound s;
 AudioIn in;
 Amplitude amp;
 Delay delay;
 
+//Volume variable
+float vol = 1.0;
+
 void setup() {
+  //A thing to hold the thing.
   size(640, 360);
   background(255);
-    
+  
+  //Instantiate all our settings
+  s = new Sound(this);
   amp = new Amplitude(this);
   in = new AudioIn(this, 0);
   delay = new Delay(this);
   
-  in.start();
+  //This is our audio player with a delay.  It also contains our amp analyzer.
+  in.play();
+  delay.process(in, 3.0, 3.0);
   amp.input(in);
 }      
 
 void draw() {
+  //Don's Fool-Proof Testing Lines(TM).
+  //println(vol);
+  //println(amp.analyze());
   
-  println(amp.analyze());
-  //Gate Code.  Currently breaks if "else if" (or just "if" or "else") is implemented.
-  //This is because amp.analyze stops returning absolute values to ten decimal
-  //places and instead drops into normal floats out to 10x^-7 as soon as the amplitude 
-  //of "in" drops out.
+  //Gate Code.  Now controls the entire sound processing volume instead of amplitude.
+  //Be aware that volume only accepts values between 0.0 and 1.0, including those two values.
   if(amp.analyze() >= 0.1){
-    delay.process(in, 3.0, 3.0);
-    in.play(1.0);
-  } //else if (amp.analyze() <= 0.01) {
-  //  in.play(0.0001);
-  //}
-  
-  
+    vol = 1.0;
+  } else if (amp.analyze() <= 0.01) {
+    vol = 0.0;
+  }
+    s.volume(vol);
 }
