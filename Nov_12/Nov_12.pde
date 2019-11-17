@@ -13,20 +13,21 @@ AudioInput in;
 
 void setup()
 {
-  size(1600, 1000, P3D);
+  //size(1600, 1000, P3D);
+  fullScreen();
 
     minim = new Minim(this);
     
-  in = minim.getLineIn(Minim.STEREO, 2048);
+  in = minim.getLineIn(Minim.STEREO, width);
 
 }
 
 
 void draw()
 {
-    background(255);
+    background(0);
   strokeWeight(5);
-  stroke(0);
+  stroke(255);
     //if ( key == 'l' ) in();
     for(int i = 0; i < in.left.size() - 1; i++)
   {
