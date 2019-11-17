@@ -1,13 +1,13 @@
 //Adopted from Daniel Shiffman https://www.youtube.com/watch?v=7eBLAgT0yUs
 //Created by Miya Fordah
 //Edited Nov 17th, 2019
-//adding kinect funtionality for 4 people  
+//added kinect funtionality for 2 people  
 import oscP5.*;
 import netP5.*;
 
 OscP5 oscP5;
 NetAddress myBroadcastLocation; 
-Particle[] particle = new Particle[1000];
+Particle[] particle = new Particle[500];
 Boolean shake = false;
 Boolean scatter = false;
 Boolean blackHole = false;
