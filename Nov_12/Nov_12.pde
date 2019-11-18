@@ -8,21 +8,16 @@ Minim minim;
 int amplification = 12;
 //Microphone
 AudioInput in;
+//Put Mouth Ani and other visuals in here...
 String[] mouthImages;
 PImage[] myMouthImages = new PImage[6];
 int x = 800;
-int y = 500;
+int y = 450;
 int i =0;
 int z =0;
-//String[] vouthAni;
-//PImage[] myVouthAni= new PImage[16];
-//ArrayList<Vouth> vouthArrayList = new ArrayList<Vouth>();
-
-//Put Mouth Ani and other visuals in here...
 
 void setup()
 {
-
   size(1600, 1000, P3D);
     mouthImages = loadStrings("vouth.txt");
   //fullScreen();
