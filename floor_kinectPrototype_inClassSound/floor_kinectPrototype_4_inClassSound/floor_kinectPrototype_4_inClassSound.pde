@@ -11,7 +11,8 @@ AudioPlayer[] player = new AudioPlayer[10];
 Minim minim;
 boolean playeurInit = false;
 boolean stop = true;
-boolean playerPresent = false;
+//set to false for kinect functionallity
+boolean playerPresent = true;
 int noteIdx = 0;
 
 StringList tableau;
@@ -51,13 +52,13 @@ void setup() {
   //shufflePlayList();
   //String son = tableau.get(current++);
   //println(son);
-  
-  for (int i = 0; i < tableau.size(); i++){
-    
+
+  for (int i = 0; i < tableau.size(); i++) {
+
     player[i] = minim.loadFile(tableau.get(i));
     player[i].pause();
   }
-  
+
 
 
   for (int i = 0; i < particle.length; i++) {
@@ -82,26 +83,25 @@ void draw() {
   }
 
 
-  if(playerPresent){
-    
-  if (player[noteIdx].isPlaying() == false) {
+  if (playerPresent) {
 
-    //CHECK we haven't exhausted the current shuffled(random) play list
-    //If we have played all the songs, then re-shuffle the list
-    if (current==tableau.size()-1) {
+    if (player[noteIdx].isPlaying() == false) {
+
+      //CHECK we haven't exhausted the current shuffled(random) play list
+      //If we have played all the songs, then re-shuffle the list
+      //if (current==tableau.size()-1) {
       //shufflePlayList();
-    }
+      //}
 
-    //String son = tableau.get(current++);
-    //player = minim.loadFile(son);
-    player[noteIdx].cue(0);
-    player[noteIdx].play();
-    playeurInit = true;
-  } else if(player[noteIdx].position() + player[noteIdx].bufferSize() >= player[noteIdx].length()){
-    player[noteIdx].pause();
-    noteIdx = (int)random(9);
-    
-  }
+      //String son = tableau.get(current++);
+      //player = minim.loadFile(son);
+      player[noteIdx].cue(0);
+      player[noteIdx].play();
+      playeurInit = true;
+    } else if (player[noteIdx].position() + player[noteIdx].bufferSize() >= player[noteIdx].length()) {
+      player[noteIdx].pause();
+      //noteIdx = (int)random(9);
+    }
   }
   //println(player[0].isPlaying(), player[0].isLooping());
   //println(player[0].position(), player[0].length());
@@ -109,8 +109,9 @@ void draw() {
 
 void oscEvent(OscMessage theOscMessage) {
 
-  playerPresent = false;
-  
+  //set to false for kinect functionallity
+  playerPresent = true;
+
   if (theOscMessage.checkAddrPattern("/joint_Head_1") == true) {
     partX[0] = width * theOscMessage.get(0).floatValue();
     partY[0] = height/6 * theOscMessage.get(2).floatValue();
