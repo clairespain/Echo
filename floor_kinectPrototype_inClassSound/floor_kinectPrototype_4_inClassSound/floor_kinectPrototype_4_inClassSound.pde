@@ -13,6 +13,8 @@ boolean playeurInit = false;
 boolean stop = true;
 //set to false for kinect functionallity
 boolean playerPresent = true;
+int timeCheck = 0;
+int timeThresh = 2000;
 int noteIdx = 0;
 
 StringList tableau;
@@ -100,8 +102,10 @@ void draw() {
       playeurInit = true;
     } else if (player[noteIdx].position() + player[noteIdx].bufferSize() >= player[noteIdx].length()) {
       player[noteIdx].pause();
-      //noteIdx = (int)random(9);
+      noteIdx = (int)random(9);
     }
+    
+    if(timeCheck > timeThresh){ playerPresent = false;}
   }
   //println(player[0].isPlaying(), player[0].isLooping());
   //println(player[0].position(), player[0].length());
@@ -110,7 +114,7 @@ void draw() {
 void oscEvent(OscMessage theOscMessage) {
 
   //set to false for kinect functionallity
-  playerPresent = true;
+  //playerPresent = true;
 
   if (theOscMessage.checkAddrPattern("/joint_Head_1") == true) {
     partX[0] = width * theOscMessage.get(0).floatValue();
@@ -138,6 +142,10 @@ void oscEvent(OscMessage theOscMessage) {
     partY[3] = height/6 * theOscMessage.get(2).floatValue();
     //theOscMessage.print();
     playerPresent = true;
+  }
+  
+  if(playerPresent){
+    timeCheck = millis();
   }
 }
 
