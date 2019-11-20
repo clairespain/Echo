@@ -39,9 +39,7 @@ void setup()
   //fullScreen();
   createAllAnimationArrays();
 
-  //vouthAni= loadStrings("data/vouth.txt");
 
-  //createAllAnimationsArrays();
   minim = new Minim(this);
 
   in = minim.getLineIn(Minim.STEREO, width);
@@ -58,7 +56,6 @@ void draw()
   rect(0, 0, width, height);
   strokeWeight(5);
   stroke(255);
-  //if ( key == 'l' ) in();
   displayAnimation();
   for (int i = 0; i < in.left.size() - 1; i++)
   {
@@ -121,21 +118,3 @@ void displayAnimation()
   imageMode(CENTER);
   //resize(100, 50);
 }
-
-//void createAllAnimationsArrays() {
-// for (int i=0; i<myVouthAni.length; i++) {
-//  //myVouthAni[i]=loadImage("data/"+vouthAni[i]);
-//  //stuff = image(myVouthAni[i],200,200);
-//  //vouthArrayList.add(myVouthAni[i]);
-
-// }
-
-//}
-
-//void vouthAnimation(){ 
-//  int i = 0;
-//  for(int j=0;j<vouthArrayList.size();j++){
-//    image(vouthArrayList.get(j),200,200);
-
-//  }
-//}
