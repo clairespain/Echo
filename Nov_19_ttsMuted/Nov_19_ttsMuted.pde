@@ -5,10 +5,10 @@
 
 import ddf.minim.*;
 import websockets.*;
-import guru.ttslib.*;
+//import guru.ttslib.*;
 WebsocketServer socket;
 Minim minim;
-TTS tts;
+//TTS tts;
 
 //AudioPlayer song;
 int amplification = 12;
@@ -32,6 +32,7 @@ ArrayList<MessageSystem> system;
 void setup()
 {
   size(1600, 1000);
+  //fullScreen();
   socket = new WebsocketServer(this, 1337, "/p5websocket");
   mouthImages = loadStrings("vouth.txt");
   //georgia = createFont("Georgia", 30);
@@ -43,7 +44,7 @@ void setup()
   minim = new Minim(this);
 
   in = minim.getLineIn(Minim.STEREO, width);
-  tts = new TTS();
+  //tts = new TTS();
 
   system = new ArrayList<MessageSystem>();
 }
@@ -89,11 +90,11 @@ void webSocketServerEvent(String msg) {
   system.add(new MessageSystem(new PVector(random(100, width-100), random(100, height-100))));
   
   //if (msg.indexOf("hello")>=0||msg.indexOf("hi")>=0){
-  if (msg.equals(hello)||msg.equals(hello2)||msg.equals(hi)||msg.equals(hi2)) {
-    tts.speak("Hello, and welcome");
-  } else {
-    tts.speak(msg);
-  }
+  //if (msg.equals(hello)||msg.equals(hello2)||msg.equals(hi)||msg.equals(hi2)) {
+  //  tts.speak("Hello, and welcome");
+  //} else {
+  //  tts.speak(msg);
+  //}
 }
 
 void createAllAnimationArrays() {
