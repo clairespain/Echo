@@ -29,9 +29,6 @@ void setup()
     //fullScreen();
     createAllAnimationArrays();
 
-    //vouthAni= loadStrings("data/vouth.txt");
-
-    //createAllAnimationsArrays();
     minim = new Minim(this);
 
     in = minim.getLineIn(Minim.STEREO, width);
@@ -40,31 +37,28 @@ void setup()
 
 void draw()
 {
-    background(0);
-    fill(0, 0);
+    //background(0);
+    fill(0, 0.5);
     rect(0, 0, width, height);
     strokeWeight(5);
     stroke(255);
-    //if ( key == 'l' ) in();
+
     displayAnimation();
     for (int i = 0; i < in.left.size() - 1; i++)
     {
         line(i, height/2 - 100  + in.left.get(i)*500, i+1, height/2 - 100  + in.left.get(i+1)*50);
         line(i, height/2 + 50 + in.right.get(i)*500, i+1, height/2 + 50 + in.right.get(i+1)*50);
     }
-    //mouthImages.resize(100, 50);
-    //image(myVouthAni[16],width/2, height/2);
-    //vouthAnimation();
 }
 
 void webSocketServerEvent(String msg) {
     println(msg);
-    //textSize(24);
+    textSize(24);
     fill(0, 0, 255);
-    //textFont('Georgia');
-    //textAlign(CENTER);
+    ////textFont('Georgia');
+    ////textAlign(CENTER);
     text(msg, 100, 100);
-    tts.speak(msg);
+    //tts.speak(msg);
     
 }
 
@@ -91,21 +85,3 @@ void displayAnimation()
     imageMode(CENTER);
     //resize(100, 50);
 }
-
-//void createAllAnimationsArrays() {
-// for (int i=0; i<myVouthAni.length; i++) {
-//  //myVouthAni[i]=loadImage("data/"+vouthAni[i]);
-//  //stuff = image(myVouthAni[i],200,200);
-//  //vouthArrayList.add(myVouthAni[i]);
-
-// }
-
-//}
-
-//void vouthAnimation(){ 
-//  int i = 0;
-//  for(int j=0;j<vouthArrayList.size();j++){
-//    image(vouthArrayList.get(j),200,200);
-
-//  }
-//}
