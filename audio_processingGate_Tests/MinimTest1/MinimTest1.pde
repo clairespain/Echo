@@ -26,7 +26,7 @@ Delay delayer3;
 TickRate pitchUp;
 TickRate pitchDown;
 Flanger flange;
-
+MultiChannelBuffer bigBuff;
 boolean fading = false;
 int tick = 0;
 int tock = 0;
@@ -48,6 +48,7 @@ void setup()
   pitchUp = new TickRate(2);
   pitchDown = new TickRate(0.5);
 
+  bigBuff = new MultiChannelBuffer(3, 4096);
   //flange = new Flanger(0, 10, 5, 0.1f, 0.5f, 1);
   minim.debugOn();
 
@@ -55,9 +56,9 @@ void setup()
   int buffer_size = 4096;
   
   in = minim.getLineIn(Minim.MONO, buffer_size);
-  out = minim.getLineOut(Minim.STEREO, buffer_size);
-  out2 = minim.getLineOut(Minim.STEREO, buffer_size);
-  out3 = minim.getLineOut(Minim.STEREO, buffer_size);
+  out = minim.getLineOut(Minim.MONO, buffer_size);
+  out2 = minim.getLineOut(Minim.MONO, buffer_size);
+  out3 = minim.getLineOut(Minim.MONO, buffer_size);
   
   // Create the socket to connect input to output
   mySocket = new MyAudioSocket(buffer_size);
@@ -97,7 +98,7 @@ void draw()
   textSize(24);
   textAlign(CENTER);
   text(time, width / 2, height / 2);
-  //println(out.getGain());
+  println(delayer.channelCount());
   //println(in.left.level());
   //println(fading);
   //println(out.getDurationFactor());
@@ -117,27 +118,28 @@ void draw()
 //  }
 }
 
-void fader() {
-  if(fading == false) {
-    out.shiftGain(0, -24, 500);
-    out2.shiftGain(0, -24, 500);
-    out3.shiftGain(0, -24, 500);
-  }
-   if(out.getGain() <= -23.5){
-    fading = true;
-    }
-}
+//void fader() {
+//  if(fading == false) {
+//    out.shiftGain(0, -24, 500);
+//    out2.shiftGain(0, -24, 500);
+//    out3.shiftGain(0, -24, 500);
+//  }
+//   if(out.getGain() <= -23.5){
+//    fading = true;
+//    clipper = 
+//    }
+//}
 
-
-void riser() {
-  if(fading == true) {
-    in.addListener(mySocket);
-    out.shiftGain(-25, 0, 100);
-    out2.shiftGain(-25, 0, 500);
-    out3.shiftGain(-25, 0, 500);
-    fading = false;
-  }
-}
+//void riser() {
+//  if(fading == true) {
+//    out.shiftGain(-25, 0, 100);
+//    out2.shiftGain(-25, 0, 500);
+//    out3.shiftGain(-25, 0, 500);
+//  }
+//   if(out.getGain() >= -2.0){
+//    fading = false;
+//    }
+//}
 
 void keyPressed() {
   switch( key )
