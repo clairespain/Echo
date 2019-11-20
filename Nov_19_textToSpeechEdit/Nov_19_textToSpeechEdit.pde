@@ -40,13 +40,13 @@ void setup()
 
 void draw()
 {
-    //background(0);
+    background(0);
     fill(0, 0);
     rect(0, 0, width, height);
     strokeWeight(5);
     stroke(255);
     //if ( key == 'l' ) in();
-    //displayAnimation();
+    displayAnimation();
     for (int i = 0; i < in.left.size() - 1; i++)
     {
         line(i, height/2 - 100  + in.left.get(i)*500, i+1, height/2 - 100  + in.left.get(i+1)*50);
