@@ -1,0 +1,7 @@
+ClosedMouth5.png
+ClosedMouth6.png
+ClosedMouth7.png
+OpenMouth4.png
+OpenMouth5.png
+OpenMouth6.png
+OpenMouth7.png
