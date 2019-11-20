@@ -54,7 +54,7 @@ void setup()
   // get a line in from Minim, default bit depth is 16
   int buffer_size = 4096;
   
-  in = minim.getLineIn(Minim.STEREO, buffer_size);
+  in = minim.getLineIn(Minim.MONO, buffer_size);
   out = minim.getLineOut(Minim.STEREO, buffer_size);
   out2 = minim.getLineOut(Minim.STEREO, buffer_size);
   out3 = minim.getLineOut(Minim.STEREO, buffer_size);
@@ -103,37 +103,41 @@ void draw()
   //println(out.getDurationFactor());
   //println(tick);
 
-  //if(in.left.level() >= 0.2 && fading == false){
+  //if(in.left.level() >= 0.6){
   //  fader();
-  //} else if(in.left.level() <= 0.0001 && fading == true){
+  //} else if(in.left.level() <= 0.0001){
   //  riser();
   //}
 
 
 //  if(out.getGain() <= -59.0 && fading == true) {
-//    in.removeListener(mySocket);
+//
 //  } else if(out.getGain() >= -58.0 && fading == false) {
-//    in.addListener(mySocket);
+//
 //  }
 }
 
-//void fader() {
-//  if(fading == false) {
-//    out.shiftGain(0, -60, 3000);
-//    fading = true;
-    //if (out.getGain() <= -59.0) {
-    //  in.removeListener(mySocket);
-    //}
-//  }
-//}
+void fader() {
+  if(fading == false) {
+    out.shiftGain(0, -24, 500);
+    out2.shiftGain(0, -24, 500);
+    out3.shiftGain(0, -24, 500);
+  }
+   if(out.getGain() <= -23.5){
+    fading = true;
+    }
+}
 
-//void riser() {
-//  if(fading == true) {
-//    in.addListener(mySocket);
-//    out.shiftGain(-60, 0, 100);
-//    fading = false;
-//  }
-//}
+
+void riser() {
+  if(fading == true) {
+    in.addListener(mySocket);
+    out.shiftGain(-25, 0, 100);
+    out2.shiftGain(-25, 0, 500);
+    out3.shiftGain(-25, 0, 500);
+    fading = false;
+  }
+}
 
 void keyPressed() {
   switch( key )
