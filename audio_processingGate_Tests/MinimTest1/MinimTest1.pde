@@ -5,6 +5,7 @@
 //at the very bottom that disconnects the listeners when you press "1" and restarts them
 //when you press "2".
 
+import java.util.concurrent.TimeUnit;
 import ddf.minim.*;
 import ddf.minim.ugens.*;
 
@@ -91,39 +92,31 @@ void draw()
   //  line( x1, 50 + out.left.get(i)*50, x2, 50 + out.left.get(i+1)*50);
   //  line( x1, 150 + out.right.get(i)*50, x2, 150 + out.right.get(i+1)*50);
 
-
-
+  tick = millis();
+  String time = String.format("%d hrs, %d min, %d sec", TimeUnit.MILLISECONDS.toHours(tick), TimeUnit.MILLISECONDS.toMinutes(tick), TimeUnit.MILLISECONDS.toSeconds(tick) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(tick)));
+  textSize(24);
+  textAlign(CENTER);
+  text(time, width / 2, height / 2);
   //println(out.getGain());
   //println(in.left.level());
   //println(fading);
   //println(out.getDurationFactor());
   //println(tick);
-  }
+
   //if(in.left.level() >= 0.2 && fading == false){
   //  fader();
   //} else if(in.left.level() <= 0.0001 && fading == true){
   //  riser();
   //}
 
-  //timer
-  //if(fading == true) {
-  //  tick = millis();
-  //} else {
-  //  tock = millis();
-  //  coocoo = (tock - tick)*.001;
-  //}
-  
-  //if(coocoo >= 5 && fading == false) {
-  //  fader();
-  //}
-  //if(
 
 //  if(out.getGain() <= -59.0 && fading == true) {
 //    in.removeListener(mySocket);
 //  } else if(out.getGain() >= -58.0 && fading == false) {
 //    in.addListener(mySocket);
 //  }
-//}
+}
+
 //void fader() {
 //  if(fading == false) {
 //    out.shiftGain(0, -60, 3000);
