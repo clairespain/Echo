@@ -33,6 +33,7 @@ float[] partY = new float[4];
 void setup() {
   //size(1000, 1000);
   fullScreen();
+  noCursor();
   oscP5 = new OscP5(this, 7000);
   myBroadcastLocation = new NetAddress("127.0.0.1", 7000);
 

@@ -9,10 +9,11 @@ class Particle {
   float p1Distance;
   float p2Distance;
   float p3Distance;
+  float size = random(2, 5);
   //float size = random(.5, 4);
-  //int red = (int)random(200, 255);
-  //int green = (int)random(200, 255);
-  //int blue = (int)random(200, 255);
+  //int red = (int)random(150, 255);
+  //int green = (int)random(150, 255);
+  //int blue = (int)random(150, 255);
 
   Particle(float locX, float locY) {
     this.locX = locX;
@@ -30,9 +31,9 @@ class Particle {
 
   void velocity() {
     PVector p0 = new PVector(partX[0], partY[0]);
-    PVector p1 = new PVector(partX[0], partY[0]);
-    PVector p2 = new PVector(partX[0], partY[0]);
-    PVector p3 = new PVector(partX[0], partY[0]);
+    PVector p1 = new PVector(partX[1], partY[1]);
+    PVector p2 = new PVector(partX[2], partY[2]);
+    PVector p3 = new PVector(partX[3], partY[3]);
 
     PVector center = new PVector(width/2, height/2);
     PVector stop = new PVector(0, 0);
@@ -166,8 +167,9 @@ class Particle {
       location.y = random(0, height);
     }
 
+    //fill(red, blue, green);
     fill(255);
     noStroke();
-    circle(location.x, location.y, 2.5);
+    circle(location.x, location.y, size);
   }
 }
