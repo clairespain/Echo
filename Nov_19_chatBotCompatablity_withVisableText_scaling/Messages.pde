@@ -6,7 +6,7 @@ class Messages {
   float moveX;
   float moveY;
 
-
+  String message = msg;
 
   Messages(PVector l) {
     position = l.copy();
@@ -28,7 +28,7 @@ class Messages {
     //textFont(georgia);
     textSize(30);
     textAlign(CENTER);
-    text(msg, position.x, position.y);
+    text(message, position.x, position.y);
     //println(position.x, position.y);
   }
 
