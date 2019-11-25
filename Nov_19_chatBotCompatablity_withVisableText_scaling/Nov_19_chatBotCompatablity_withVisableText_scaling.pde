@@ -20,11 +20,12 @@ AudioInput in;
 String[] mouthImages;
 PImage[] myMouthImages = new PImage[6];
 int x = 800;
-int y = 450;
+int y = 500;
 int i =0;
 int z =0;
 String msg;
 ArrayList<MessageSystem> system;
+
 
 //PFont georgia;
 
@@ -58,16 +59,14 @@ void draw()
   displayAnimation();
   for (int i = 0; i < in.left.size() - 1; i++)
   {
-    line(i, height/2 - 100  + in.left.get(i)*500, i+1, height/2 - 100  + in.left.get(i+1)*50);
-    line(i, height/2 + 50 + in.right.get(i)*500, i+1, height/2 + 50 + in.right.get(i+1)*50);
+    //line(i, height/2 - 100  + in.left.get(i)*500, i+1, height/2 - 100  + in.left.get(i+1)*50);
+    line(i, height/2 + in.left.get(i)*500, i+1, height/2 + in.left.get(i+1)*50);
+    //line(i, height/2 + 50 + in.right.get(i)*500, i+1, height/2 + 50 + in.right.get(i+1)*50);
   }
 
   for (MessageSystem ps : system) {
     ps.run();
   }
-  //mouthImages.resize(100, 50);
-  //image(myVouthAni[16],width/2, height/2);
-  //vouthAnimation();
 }
 
 void webSocketServerEvent(String msg) {
@@ -75,20 +74,22 @@ void webSocketServerEvent(String msg) {
   String hello2 = " hello";
   String hi = "hi";
   String hi2 = " hi";
+  String name = "what is your name";
+  String name2 = " what is your name";
 
   println(msg);
   this.msg = msg;
-
-  //textSize(24);
-  //fill(0, 0, 255);
-  //textFont("Georgia");
-  //textAlign(CENTER);
-  //text(msg, 100, 100);//(int)random(100, width-100), (int)random(100, height-100));
 
   system.add(new MessageSystem(new PVector(random(100, width-100), random(100, height-100))));
 
   if (msg.equals(hello)||msg.equals(hello2)||msg.equals(hi)||msg.equals(hi2)) {
     tts.speak("Hello, and welcome to the cosmos");
+  } else {
+    tts.speak(msg);
+  }
+  
+    if (msg.equals(name)||msg.equals(name2)) {
+    tts.speak("My name is Robert Rob");
   } else {
     tts.speak(msg);
   }
@@ -103,7 +104,7 @@ void createAllAnimationArrays() {
 
 void displayAnimation()
 {
-      translate(-width/2, -height/2);
+  translate(-width/2, -height/2);
   scale(2);
   image(myMouthImages[i], x, y);
   if (z==7) {
@@ -112,7 +113,7 @@ void displayAnimation()
     z=0;
   }
 
-  scale(1);
+  //scale(1);
   z++;
   if (i == 5)
   {
