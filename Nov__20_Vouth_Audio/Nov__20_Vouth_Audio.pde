@@ -81,9 +81,9 @@ void draw()
 
 //This brings our volume down if things get to spicy.
 void fader(){
-  out.shiftGain(0, -24, 1000);
-  out2.shiftGain(0, -24, 1000);
-  out3.shiftGain(0, -24, 1000);
+  out.shiftGain(0, -24, 750);
+  out2.shiftGain(0, -24, 750);
+  out3.shiftGain(0, -24, 750);
   fading = true;
 }
 
