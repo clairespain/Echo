@@ -24,7 +24,7 @@ int i =0;
 int z =0;
 color lineRed = color(255, 0, 0);
 color lineBlue = color(0, 0, 255);
-
+float speed = 10; 
 String msg;
 ArrayList<MessageSystem> system;
 
@@ -32,6 +32,7 @@ void setup()
 {
   //size(width, height);
   fullScreen();
+  smooth();
   x = width/2;
   y = height/2;
   socket = new WebsocketServer(this, 1337, "/p5websocket");
@@ -43,7 +44,7 @@ void setup()
 
   minim = new Minim(this);
 
-  in = minim.getLineIn(Minim.STEREO, width);
+  in = minim.getLineIn(Minim.MONO, width);
   tts = new TTS();
 
   system = new ArrayList<MessageSystem>();
@@ -101,11 +102,14 @@ void createAllAnimationArrays() {
     myMouthImages[i] = loadImage(mouthImages[i]);
   }
 }
-
+void changeSpeed()
+{
+//where i would change the speed of the vouth animation but i'm too dumb
+}
 void displayAnimation()
 {
   image(myMouthImages[i], x, y);
-  if (z==10) {
+  if (z==speed) {
     i++;
     z=0;
   }
@@ -114,5 +118,6 @@ void displayAnimation()
   {
     i=0;
   }
+  
   imageMode(CENTER);
 }
