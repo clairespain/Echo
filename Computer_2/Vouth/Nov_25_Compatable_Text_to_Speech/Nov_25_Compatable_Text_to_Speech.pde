@@ -16,7 +16,7 @@ int amplification = 12;
 //Microphone
 AudioInput in;
 String[] mouthImages;
-PImage[] myMouthImages = new PImage[6];
+PImage[] myMouthImages = new PImage[21];
 PImage myGalaxy;
 int x;
 int y;
@@ -28,9 +28,6 @@ color lineBlue = color(0, 0, 255);
 String msg;
 ArrayList<MessageSystem> system;
 
-//int canvasWidth = 1600;
-//int canvasHeight = 1000;
-
 void setup()
 {
   //size(width, height);
@@ -41,8 +38,6 @@ void setup()
   mouthImages = loadStrings("vouth.txt");
   myGalaxy = loadImage("galaxy.png");
   //georgia = createFont("Georgia", 30);
-
-  //fullScreen();
   createAllAnimationArrays();
 
 
@@ -109,19 +104,15 @@ void createAllAnimationArrays() {
 
 void displayAnimation()
 {
-  //translate( width/2, height/2);
-  //(scale) = 2;
   image(myMouthImages[i], x, y);
-  if (z==7) {
+  if (z==10) {
     i++;
     z=0;
   }
-
   z++;
-  if (i == 5)
+  if (i == 20)
   {
     i=0;
   }
   imageMode(CENTER);
-  //resize(100, 50);
 }

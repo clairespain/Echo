@@ -1,7 +1,12 @@
+OpenMouth6.png
+ClosedMouth1.png
+OpenMouth1.png
+OpenMouth2.png
+ClosedMouth2 .pngClosedMouth3.pngClosedMouth7.pngClosedMouth8.pngOpenMouth3.pngOpenMouth4.pngOpenMouth6.png
+ClosedMouth4.pngClosedMouth6.pngOpenMouth7.pngOpenMouth8.png
 ClosedMouth5.png
 ClosedMouth6.png
 ClosedMouth7.png
 OpenMouth4.png
 OpenMouth5.png
-OpenMouth6.png
 OpenMouth7.png
