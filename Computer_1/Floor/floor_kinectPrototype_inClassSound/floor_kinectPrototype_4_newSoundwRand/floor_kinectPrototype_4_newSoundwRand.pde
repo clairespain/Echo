@@ -2,7 +2,7 @@
 //Sound adopted from akenaton @ https://forum.processing.org/two/discussion/8949/how-do-i-play-a-random-audio-sample
 //Created by Miya Fordah
 //Edited Nov 17th, 2019
-//added kinect funtionality for 2 people  
+//added kinect funtionality for 3 people  
 import oscP5.*;
 import netP5.*;
 import ddf.minim.*;
@@ -16,8 +16,8 @@ boolean playerPresent = true;
 int timeCheck = 0;
 int timeThresh = 2000;
 int randCheck = 0;
-int randThresh = 2000;
-int disturb1;
+int randThresh = 200;
+int disturb1 = 3;
 int noteIdx = 0;
 
 
@@ -79,7 +79,7 @@ void draw() {
   //OscMessage newMessage = new OscMessage("mouseX position");  
   //newMessage.add(mouseX); 
   //oscP5.send(newMessage, myBroadcastLocation);
-  //disturb();
+  disturb();
   
   for (int i = 0; i < particle.length; i++) {
     if (shake) {
@@ -192,29 +192,28 @@ void oscEvent(OscMessage theOscMessage) {
 void disturb() {
   randCheck ++;
   if (randCheck > randThresh) { 
-    disturb1 = (int)random(0, 3);
+    disturb1 = (int)random(0, 19);
     randCheck = 0;
   }
   println(randCheck);
   println(randThresh);
   println(disturb1);
 
-  if (disturb1 == 1) {
+  if (disturb1 == 0) {
     scatter = true;
     shake = false;
     blackHole = false;
     
-  } else if (disturb1 == 2) {
+  } else if (disturb1 == 1) {
     scatter = false;
     shake = true;
     blackHole = false;
-    //randCheck = 0;
-  } else if (disturb1 == 3) {
+    
+  } else if (disturb1 == 2) {
     scatter = false;
     shake = false;
     blackHole = true;
-   // randCheck = 0;
-  } else if(disturb1 == 0) {
+  } else if(disturb1 >= 3) {
     scatter = false;
     shake = false;
     blackHole = false;
