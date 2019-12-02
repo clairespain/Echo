@@ -32,13 +32,14 @@ ArrayList<MessageSystem> system;
 void setup()
 {
   //size(width, height);
-  fullScreen();
+  fullScreen(1);
   smooth();
   x = width/2;
   y = height/2;
   socket = new WebsocketServer(this, 1337, "/p5websocket");
   mouthImages = loadStrings("vouth.txt");
   myGalaxy = loadImage("galaxy.png");
+  myGalaxy.resize(width, height);
   //georgia = createFont("Georgia", 30);
   createAllAnimationArrays();
 
@@ -63,7 +64,7 @@ void draw()
     //line(i, height/2 - 100  + in.left.get(i)*500, i+1, height/2 - 100  + in.left.get(i+1)*50);
     //line(i, height/2 + 50 + in.right.get(i)*500, i+1, height/2 + 50 + in.right.get(i+1)*50);
     line(i, height/2 + in.left.get(i)*500, i+1, height/2 + in.left.get(i+1)*50);
-    System.out.println(in.left.get(i));
+    //System.out.println(in.left.get(i));
     if(in.left.get(i)>=0.070){
      speed=1; 
      stroke(lineRed);
@@ -76,7 +77,7 @@ void draw()
      speed=20; 
       //stroke(lineBlue);
     }
-    System.out.println(speed);
+    //System.out.println(speed);
   }
   displayAnimation();
   for (MessageSystem ps : system) {
@@ -93,7 +94,7 @@ void webSocketServerEvent(String msg) {
   String hi = "hi";
   String hi2 = " hi";
 
-  println(msg);
+  println  (msg);
   this.msg = msg;
 
   //textSize(24);
@@ -105,11 +106,11 @@ void webSocketServerEvent(String msg) {
   system.add(new MessageSystem(new PVector(random(100, width-100), random(100, height-100))));
 
   //if (msg.indexOf("hello")>=0||msg.indexOf("hi")>=0){
-  if (msg.equals(hello)||msg.equals(hello2)||msg.equals(hi)||msg.equals(hi2)) {
-    tts.speak("Hello, and welcome");
-  } else {
-    tts.speak(msg);
-  }
+  //if (msg.equals(hello)||msg.equals(hello2)||msg.equals(hi)||msg.equals(hi2)) {
+  //  tts.speak("Hello, and welcome");
+  //} else {
+  //  tts.speak(msg);
+  //}
 }
 
 void createAllAnimationArrays() {
