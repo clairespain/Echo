@@ -16,7 +16,7 @@ boolean playerPresent = true;
 int timeCheck = 0;
 int timeThresh = 2000;
 int randCheck = 0;
-int randThresh = 200;
+int randThresh = 240;
 int disturb1 = 3;
 int noteIdx = 0;
 
