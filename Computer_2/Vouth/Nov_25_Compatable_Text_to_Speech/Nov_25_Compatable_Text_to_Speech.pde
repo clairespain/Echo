@@ -24,7 +24,8 @@ int i =0;
 int z =0;
 color lineRed = color(255, 0, 0);
 color lineBlue = color(0, 0, 255);
-float speed = 10; 
+color linePurple= color(255,0,255);
+int speed = 10; 
 String msg;
 ArrayList<MessageSystem> system;
 
@@ -55,12 +56,27 @@ void draw()
 {
   background(myGalaxy);
   strokeWeight(5);
-  stroke(lerpColor(lineBlue, lineRed, (((millis()/5000)%2==0)?millis():5000-millis())/5000.0));
+  //stroke(lerpColor(lineBlue, lineRed, (((millis()/5000)%2==0)?millis():5000-millis())/5000.0));
+  stroke(lineBlue);
   for (int i = 0; i < in.left.size() - 1; i++)
   {
     //line(i, height/2 - 100  + in.left.get(i)*500, i+1, height/2 - 100  + in.left.get(i+1)*50);
     //line(i, height/2 + 50 + in.right.get(i)*500, i+1, height/2 + 50 + in.right.get(i+1)*50);
     line(i, height/2 + in.left.get(i)*500, i+1, height/2 + in.left.get(i+1)*50);
+    System.out.println(in.left.get(i));
+    if(in.left.get(i)>=0.070){
+     speed=1; 
+     stroke(lineRed);
+    }
+    else if(in.left.get(i)>=0.05&&in.left.get(i)<0.070){
+     speed=5;
+     stroke(linePurple);
+    }
+    else {
+     speed=20; 
+      //stroke(lineBlue);
+    }
+    System.out.println(speed);
   }
   displayAnimation();
   for (MessageSystem ps : system) {
@@ -102,14 +118,12 @@ void createAllAnimationArrays() {
     myMouthImages[i] = loadImage(mouthImages[i]);
   }
 }
-void changeSpeed()
-{
-//where i would change the speed of the vouth animation but i'm too dumb
-}
+
 void displayAnimation()
 {
+  
   image(myMouthImages[i], x, y);
-  if (z==speed) {
+  if (z>=speed) {
     i++;
     z=0;
   }
