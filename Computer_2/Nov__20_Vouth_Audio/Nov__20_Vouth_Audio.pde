@@ -20,8 +20,8 @@ void setup()
   minim = new Minim(this);
 
   //For that sweet echo.
-  reverb = new Delay(0.2, 0.5, true, false);
-  reverb2 = new Delay(0.3, 0.5, true, false);
+  reverb = new Delay(0.2, 0.25, true, false);
+  reverb2 = new Delay(0.3, 0.75, true, false);
   reverb3 = new Delay(0.1, 0.5, true, false);
 
   //So we don't talk over each other.
@@ -66,33 +66,33 @@ void draw()
   stroke(255);
 
   //Testing Lines
-  //println("Line In " + in.left.level());
+  println("Line In " + in.left.level());
   //println(fading);
-  //println("Out Gain " + out.getGain());
+  println("Out Gain " + out.getGain());
   //println("Timer " + millis());
   //println("Alarm " + alarm);
-  if(in.left.level() >= 0.3 && fading == false){
+  if(in.left.level() >= 0.14 && fading == false){
     fader();
     //alarm = millis(); <-- Again, b0rked.
-  } else if(in.left.level() <= 0.01 && fading == true /*|| millis() - alarm < 15000 <-- See previous comment.*/){
+  } else if(in.left.level() <= 0.05 && fading == true /*|| millis() - alarm < 15000 <-- See previous comment.*/){
     riser();
   }
 }
 
 //This brings our volume down if things get to spicy.
 void fader(){
-  out.shiftGain(0, -24, 750);
-  out2.shiftGain(0, -24, 750);
-  out3.shiftGain(0, -24, 750);
+  out.shiftGain(-10, -50, 2000);
+  out2.shiftGain(-10, -50, 3000);
+  out3.shiftGain(-10, -50, 1500);
   fading = true;
 }
 
 //This brings our volume back up when things get too boring.
 void riser(){
   fading = false;
-  out.shiftGain(-23, 0, 15000);
-  out2.shiftGain(-23, 0, 20000);
-  out3.shiftGain(-23, 0, 10000);
+  out.shiftGain(-48, -10, 7500);
+  out2.shiftGain(-48, -10, 9000);
+  out3.shiftGain(-48, -10, 5000);
 }
 
 //Emergency Kill Switch/Nuke Option
