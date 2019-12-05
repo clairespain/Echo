@@ -71,28 +71,28 @@ void draw()
   println("Out Gain " + out.getGain());
   //println("Timer " + millis());
   //println("Alarm " + alarm);
-  if(in.left.level() >= 0.14 && fading == false){
+  if(in.left.level() >= 0.15 && fading == false){
     fader();
     //alarm = millis(); <-- Again, b0rked.
-  } else if(in.left.level() <= 0.05 && fading == true /*|| millis() - alarm < 15000 <-- See previous comment.*/){
+  } else if(in.left.level() <= 0.10 && fading == true /*|| millis() - alarm < 15000 <-- See previous comment.*/){
     riser();
   }
 }
 
 //This brings our volume down if things get to spicy.
 void fader(){
-  out.shiftGain(-10, -50, 2000);
-  out2.shiftGain(-10, -50, 3000);
-  out3.shiftGain(-10, -50, 1500);
+  out.shiftGain(0, -30, 2000);
+  out2.shiftGain(0, -30, 3000);
+  out3.shiftGain(0, -30, 1500);
   fading = true;
 }
 
 //This brings our volume back up when things get too boring.
 void riser(){
   fading = false;
-  out.shiftGain(-48, -10, 7500);
-  out2.shiftGain(-48, -10, 9000);
-  out3.shiftGain(-48, -10, 5000);
+  out.shiftGain(-28, 0, 3000);
+  out2.shiftGain(-28, 0, 5000);
+  out3.shiftGain(-28, 0, 4500);
 }
 
 //Emergency Kill Switch/Nuke Option
